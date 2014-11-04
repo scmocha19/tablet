@@ -38,6 +38,7 @@ shuffle = function (o) { //v1.0
     return o;
 }
 
+//I wish the sky was pink
 getCurrentDate = function() {
 	var currentDate = new Date();
 	var day = currentDate.getDate();
