@@ -156,11 +156,9 @@ playPrompt = function(word) {
 //CONTROL FLOW
 
 //PRELOAD ALL IMAGES//---------------------------
-var allimages = ["dog", "book", "cookie", "baby", "fep", "car", "dax", "cup", "pifo", "frog",
-					  "table", "lion", "modi", "shovel", "wug", "apple", "train", "dofa", "monkey", "toma", 
-					  "frog", "pifo", "cup", "dax", "kreeb", "shoe", "ball", "cat", "toma", "monkey", "dofa", "train",
-					  "car", "fep", "carrot", "lamp", "shovel", "modi", "sheep", "hammer", "apple", "wug",
-					  "shoe", "kreeb", "horse", "clock", "bird", "bottle", "fill1", "fill2", "fill3", "fill4"];
+var allimages = [“book_table”, “book_plane”, “flowers_basket”, “flowers_donut”, “house_door”, “house_nose”, “knife_fork”, “knife_camel”, “wooden_apples”, “wooden_blocks”, 
+“cat_kittens”, “cat_hammers”, “bread_peanutbutter”, “bread_ketchup”, “tie”, “die”, “goats”, “coats”, “van”, “fan”, “pen,” “pan”, “ball”, 
+“bowl”, “bugs”, “bags”, “cap”, “cup”];
 //for critical trials and fillers
 var images = new Array();
 for (i = 0; i<allimages.length; i++) {
