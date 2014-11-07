@@ -38,7 +38,29 @@ shuffle = function (o) { //v1.0
     return o;
 }
 
-//I wish the sky was pink
+makePermutation = function(n) {
+	var p = [];
+	for (var i = 0; i < n; ++i) {
+		p.push(i);
+	}
+	shuffle(p);
+	return p;
+}
+
+shuffleByPermutation = function(arr, perm) {
+	var result = [];
+	for (var i = 0; i < perm.length; ++i) {
+		result.push(arr[perm[i]]);
+	}
+	return result;
+}
+
+flatten = function(arr) {
+	return arr.reduce(function(a, b) {
+  		return a.concat(b);
+	});
+}
+
 getCurrentDate = function() {
 	var currentDate = new Date();
 	var day = currentDate.getDate();
@@ -58,7 +80,31 @@ getCurrentTime = function() {
 }
 
 //returns the word array; in the below order for list 1 and reversed for list 2
-makeWordList = function(order) {
+makeWordList = function(order, trainPermutation, testPermutation) {
+	// order=1 means normal
+	// order=2 means noisy
+	var trainWords = shuffleByPermutation(
+		[["book_table", "book_plane"], ["flowers_basket", "flowers_donut"],
+		["house_door", "house_nose"], ["knife_fork", "knife_camel"], ["wooden_apples", "wooden_blocks"],
+ 		["cat_kittens", "cat_hammers"], ["bread_peanutbutter", "bread_ketchup"]],
+		trainPermutation);
+
+	var testWords = shuffleByPermutation(
+		["tiedie", "goatscoats",
+ 		"vanfan", "penpan", "ballbowl", "bugsbags", "capcup"],
+		testPermutation);
+
+	for (var i = 0; i < trainWords.length; ++i) {
+		trainWords[i] = trainWords[i][order - 1];
+	}
+	var allWords = trainWords.concat(testWords);
+
+	// TODO: update the train/test words above with the names of the audio segments
+	// update spriteData.js with the right info
+	// return allWords and kill the stuff below
+	//console.log(thingyouwantprinted)
+
+
 	var wordList = ["dog", "cookie", "car", "dax", "frog", "fill1", "lion", "modi", "apple",
 					"train", "toma", "fill2", "pifo", "cup", "kreeb", "cat", "monkey", "fill3",
 					"dofa", "fep", "carrot", "shovel", "hammer", "fill4", "wug", "shoe", "horse", "bottle"];
@@ -69,18 +115,18 @@ makeWordList = function(order) {
 }
 
 //returns the image array; in the below order for list 1 and reversed with side-sway for list 2
-makeImageArray = function(order) {
-	//remove filler names from allimages array used in preloading. 
-	//Trial 1 will be "pifo" on left and "frog" on right, trial two will be "carrot" on left and "lamp" on right, etc...
-	var toSlice = allimages.length - 4;
-	var imageArray = allimages.slice(0, toSlice);
-
-	//reverse the list so that the trials are reversed and the sides are swapped: trial 1 will be "shoe" 
-	//on left and "kreeb" on right, etc...
-	if (order === 2) {
-		imageArray.reverse();
+makeImageArray = function(order, trainPermutation, testPermutation) {
+	// [[im1_option1, im1_option2], [im2_left, im2_right], ...]
+	var train = shuffleByPermutation(trainImages, trainPermutation);
+	var test = shuffleByPermutation(testImages, testPermutation);
+	for (var i = 0; i < trainImages.length; i++) {
+		shuffle(train[i]);
 	}
-	return imageArray;
+	for (var i = 0; i < testImages.length; i++) {
+		shuffle(test[i]);
+	}
+	var joinedImages = flatten(train).concat(flatten(test));
+	return joinedImages;
 }
 
 getTrialType = function(word, leftpic, rightpic) {
@@ -156,9 +202,14 @@ playPrompt = function(word) {
 //CONTROL FLOW
 
 //PRELOAD ALL IMAGES//---------------------------
-var allimages = [“book_table”, “book_plane”, “flowers_basket”, “flowers_donut”, “house_door”, “house_nose”, “knife_fork”, “knife_camel”, “wooden_apples”, “wooden_blocks”, 
-“cat_kittens”, “cat_hammers”, “bread_peanutbutter”, “bread_ketchup”, “tie”, “die”, “goats”, “coats”, “van”, “fan”, “pen,” “pan”, “ball”, 
-“bowl”, “bugs”, “bags”, “cap”, “cup”];
+var trainImages = [["book_table", "book_plane"], ["flowers_basket", "flowers_donut"],
+["house_door", "house_nose"], ["knife_fork", "knife_camel"], ["wooden_apples", "wooden_blocks"],
+ ["cat_kittens", "cat_hammers"], ["bread_peanutbutter", "bread_ketchup"]];
+
+var testImages = [["tie", "die"], ["goats", "coats"],
+ ["van", "fan"], ["pen", "pan"], ["ball", "bowl"], ["bugs", "bags"], ["cap", "cup"]];
+
+var allimages = flatten(trainImages).concat(flatten(testImages));
 //for critical trials and fillers
 var images = new Array();
 for (i = 0; i<allimages.length; i++) {
@@ -356,10 +407,12 @@ var experiment = {
 	// MAIN DISPLAY FUNCTION
   	next: function() {
 
+  		var trainPermutation = makePermutation(trainImages.length);
+  		var testPermutation = makePermutation(testImages.length);
 		//returns the list of all words to use in the study - list dependent
-  		var wordList = makeWordList(experiment.order);
+  		var wordList = makeWordList(experiment.order, trainPermutation, testPermutation);
   		//returns the list of all images to use in the study - list dependent
-		var imageArray = makeImageArray(experiment.order);
+		var imageArray = makeImageArray(experiment.order, trainPermutation, testPermutation);
 
 		var objects_html = "";
 		var counter = 1;
