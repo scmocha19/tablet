@@ -9,7 +9,7 @@
 var numTrials = 15;
 
 //amount of white space between trials
-var normalpause = 1500;
+var normalpause = 2500;
 
 //pause after picture chosen, to display red border around picture selected
 var timeafterClick = 1000;
