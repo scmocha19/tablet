@@ -377,7 +377,7 @@ var experiment = {
     	setTimeout(function () {
     		$("#stage").fadeOut();
     	}, normalpause);
-    	showSlide("finish");
+    	showSlide("finished");
     	document.body.style.background = "black";
     },
 
