@@ -1,150 +1,128 @@
 var spriteData = {
-	dog: {
+	
+	katie: {
 		start: 0,
-		onset: 2.608,
-		length: 3.380
+		onset: 1,
+		length: 2.946,
 	},
-	cookie: {
-		start: 3.380,
-		onset: 5.987,
-		length: 3.345
+	book_table: {
+		start: 2.946,
+		onset: 3,
+		length: 2.659, 
 	},
-	car: {
-		start: 6.725,
-		onset: 9.460,
-		length: 3.461
+	pook_table: {
+		start: 5.605,
+		onset: 6,
+		length: 2.278,
 	},
-	dax: {
-		start: 10.186,
-		onset: 12.688,
-		length: 3.230
+	bread_peanutbotter: {
+		start: 7.583,
+		onset: 8,
+		length: 3.268,
 	},
-	frog: {
-		start: 13.416,
-		onset: 16.058,
-		length: 3.380
+	bread_peanutbutter: {
+		start: 10.851,
+		onset: 12,
+		length: 3.396,
 	},
-	fill1: {
-		start: 17.400,
-		//start: 16.796,
-		onset: 0,
-		length: 3.229
-		//length: 3.833
+	wooden_blocks: {
+		start: 14.547,
+		onset: 15,
+		length: 2.917,
 	},
-	lion: {
-		start: 20.629,
-		onset: 23.137,
-		length: 3.438
+	wooden_blucks: {
+		start: 17.464,
+		onset: 18,
+		length: 2.898,
 	},
-	modi: {
-		start: 24.067,
-		onset: 26.635,
-		length: 3.450
+	flowers_basket: {
+		start: 20.362,
+		onset: 21,
+		length: 3.459,
 	},
-	apple: {
-		start: 27.517,
-		onset: 30.204,
-		length: 3.380
+	flowers_pasket: {
+		start: 23.621,
+		onset: 25,
+		length: 2.641,
 	},
-	train: {
-		start: 30.897,
-		onset: 33.516,
-		length: 3.612
+	house_door: {
+		start: 26.662,
+		onset: 27,
+		length: 3.120,
 	},
-	toma: {
-		start: 34.509,
-		onset: 37.159,
-		length: 3.577
+	house_toor: {
+		start: 29.782,
+		onset: 30,
+		length: 2.944,
 	},
-	fill2: {
-		//start: 38.086,
-		start: 38.901,
-		onset: 0,
-		//length: 5.818
-		length: 5.003
+	shark_fish: {
+		start: 32.726,
+		onset: 33,
+		length: 2.922,
 	},
-	pifo: {
-		start: 43.904,
-		onset: 46.767,
-		length: 3.634
+	zhark_fish: {
+		start: 35.648,
+		onset: 36,
+		length: 2.360,
 	},
-	cup: {
-		start: 47.538,
-		onset: 50.265,
-		length: 3.670
+	cat_kittens: {
+		start: 38.008,
+		onset: 39,
+		length: 2.887,
 	},
-	kreeb: {
-		start: 51.208,
-		onset: 53.766,
-		length: 3.449
+	cat_kettens: {
+		start: 40.895,
+		onset: 42,
+		length: 2.653,
 	},
-	cat: {
-		start: 54.657,
-		onset: 57.163,
-		length: 3.334 
+	knife_fork: {
+		start: 43.848,
+		onset: 44,
+		length: 3.527,
 	},
-	monkey: {
-		start: 57.991,
-		onset: 60.734,
-		length: 3.507
+	knife_vork: {
+		start: 47.375,
+		onset: 48,
+		length: 3.416,
 	},
-	fill3: {
-		//start: 61.498,
-		start: 62.504,
-		onset: 0,
-		//length: 4.278
-		length: 3.272
+	tiedie: {
+		start: 50.791,
+		onset: 51,
+		length: 3.761,
 	},
-	dofa: {
-		start: 65.776,
-		onset: 68.306,
-		length: 3.356
+	goatscoats: {
+		start: 54.552,
+		onset: 55,
+		length: 3.325,
 	},
-	fep: {
-		start: 69.132,
-		onset: 71.672,
-		length: 3.621
+	roberope: {
+		start: 57.877, 
+		onset: 59,
+		length: 3.988,
 	},
-	carrot: {
-		start: 72.753,
-		onset: 75.284,
-		length: 3.612
+	penpan: {
+		start: 62.105,
+		onset: 63,
+		length: 3.521,
 	},
-	shovel: {
-		start: 76.365,
-		onset: 79.019,
-		length: 3.586
+	ballbowl: {
+		start: 65.626,
+		onset: 66,
+		length: 4.006,
 	},
-	hammer: {
-		start: 79.951,
-		onset: 82.757,
-		length: 3.531
+	capcup: {
+		start: 69.872,
+		onset: 70,
+		length: 4.356,
 	},
-	fill4: {
-		//start: 83.482,
-		start: 84.104,
-		onset: 0,
-		//length: 3.126
-		length: 2.504 
+	bugsbags: {
+		start: 74.228,
+		onset: 75,
+		length: 3.718,
 	},
-	wug: {
-		start: 86.608,
-		onset: 89.363,
-		length: 3.334
+	vanfan: {
+		start: 77.946,
+		onset: 78,
+		length: 3.083,
 	},
-	shoe: {
-		start: 89.942,
-		onset: 92.517,
-		length: 3.565
-	},
-	horse: {
-		start: 93.507,
-		onset: 96.252,
-		length: 3.481
-	},
-	bottle: {
-		start: 96.988,
-		onset: 99.578,
-		length: 3.334
-	}
 };

@@ -6,7 +6,7 @@
 
 // ---------------- PARAMETERS ------------------
 
-var numTrials = 28;
+var numTrials = 15;
 
 //amount of white space between trials
 var normalpause = 1500;
@@ -83,21 +83,40 @@ getCurrentTime = function() {
 makeWordList = function(order, trainPermutation, testPermutation) {
 	// order=1 means normal
 	// order=2 means noisy
-	var trainWords = shuffleByPermutation(
-		[["book_table", "book_plane"], ["flowers_basket", "flowers_donut"],
-		["house_door", "house_nose"], ["knife_fork", "knife_camel"], ["wooden_apples", "wooden_blocks"],
- 		["cat_kittens", "cat_hammers"], ["bread_peanutbutter", "bread_ketchup"]],
-		trainPermutation);
+	
 
 	var testWords = shuffleByPermutation(
 		["tiedie", "goatscoats",
  		"vanfan", "penpan", "ballbowl", "bugsbags", "capcup"],
 		testPermutation);
-
-	for (var i = 0; i < trainWords.length; ++i) {
-		trainWords[i] = trainWords[i][order - 1];
+	//var trainWords = shuffleByPermutation(
+	//	[["book_table", "book_plane"], ["flowers_basket", "flowers_donut"],
+	//	["house_door", "house_nose"], ["knife_fork", "knife_camel"], ["wooden_apples", "wooden_blocks"],
+ 	//	["cat_kittens", "cat_hammers"], ["bread_peanutbutter", "bread_ketchup"]],
+	//	trainPermutation);
+	
+	if (order === 1) {
+	var trainWords = shuffleByPermutation(
+		["book_table", "bread_peanutbutter", "wooden_blocks", "flowers_basket", 
+		"house_door", "shark_fish", "cat_kittens", "knife_fork"],
+		trainPermutation);
 	}
-	var allWords = trainWords.concat(testWords);
+
+	else {
+	var trainWords = shuffleByPermutation(
+		["pook_table", "bread_peanutbotter", "wooden_blucks", "flowers_pasket", "house_toor", 
+		"zhark_fish", "cat_kettens", "knife_vork"],
+
+
+		trainPermutation);
+	}
+	
+	// for (var i = 0; i < trainWords.length; ++i) {
+	// 	trainWords[i] = trainWords[i][order - 1];
+	// }
+
+	var wordList = trainWords.concat(testWords);
+	return wordList;
 
 	// TODO: update the train/test words above with the names of the audio segments
 	// update spriteData.js with the right info
@@ -105,13 +124,13 @@ makeWordList = function(order, trainPermutation, testPermutation) {
 	//console.log(thingyouwantprinted)
 
 
-	var wordList = ["dog", "cookie", "car", "dax", "frog", "fill1", "lion", "modi", "apple",
-					"train", "toma", "fill2", "pifo", "cup", "kreeb", "cat", "monkey", "fill3",
-					"dofa", "fep", "carrot", "shovel", "hammer", "fill4", "wug", "shoe", "horse", "bottle"];
-	if (order === 2) {
-		wordList.reverse();
-	}
-	return wordList;
+	//var wordList = ["house_door", "shark_fish", "cat_kittens", "knife_fork", "tiedie", "goatscoats",
+ 	//	"vanfan", "penpan", "ballbowl", "bugsbags", "capcup"];
+	//if (order === 2) {
+	//	wordList = ["pook_table", "peanutbotter", "wooden_blucks", "flowers_pasket", "house_toor", "zhark_fish", "cat_kettens", "knife_vork", "tiedie", "goatscoats",
+ 	//	"vanfan", "penpan", "ballbowl", "bugsbags", "capcup"];
+	//}
+	//return wordList;
 }
 
 //returns the image array; in the below order for list 1 and reversed with side-sway for list 2
@@ -202,12 +221,12 @@ playPrompt = function(word) {
 //CONTROL FLOW
 
 //PRELOAD ALL IMAGES//---------------------------
-var trainImages = [["book_table", "book_plane"], ["flowers_basket", "flowers_donut"],
-["house_door", "house_nose"], ["knife_fork", "knife_camel"], ["wooden_apples", "wooden_blocks"],
- ["cat_kittens", "cat_hammers"], ["bread_peanutbutter", "bread_ketchup"]];
+var trainImages = [["book_table", "book_plane"], ["bread_peanutbutter", "bread_ketchup"], ["wooden_apples", "wooden_blocks"], 
+		["flowers_basket", "flowers_donut"], ["house_door", "house_nose"], ["shark_fish", "shark_racecar"], ["cat_kittens", "cat_hammers"], 
+		["knife_fork", "knife_camel"]];
 
-var testImages = [["tie", "die"], ["goats", "coats"],
- ["van", "fan"], ["pen", "pan"], ["ball", "bowl"], ["bugs", "bags"], ["cap", "cup"]];
+var testImages = [["tiedie", "die"], ["goatscoats", "coats"],
+ ["vanfan", "fan"], ["penpan", "pan"], ["ballbowl", "bowl"], ["bugsbags", "bags"], ["capcup", "cup"]];
 
 var allimages = flatten(trainImages).concat(flatten(testImages));
 //for critical trials and fillers
@@ -401,7 +420,7 @@ var experiment = {
 		dataforRound += "," + experiment.pic1 + "," + experiment.pic2 + "," + experiment.pic1type + "," + experiment.pic2type;
 		dataforRound += "," + experiment.side + "," + experiment.chosenpic + "," + experiment.response + "," + experiment.trialtype;
 		dataforRound += "," + experiment.date + "," + experiment.timestamp + "," + experiment.reactiontime + "\n";
-		$.post("http://langcog.stanford.edu/cgi-bin/TABLET/tabletstudysave.php", {postresult_string : dataforRound});	
+		$.post("http://langcog.stanford.edu/cgi-bin/SC_noisy/tabletstudysave.php", {postresult_string : dataforRound});	
 	},
 
 	// MAIN DISPLAY FUNCTION
@@ -504,6 +523,7 @@ var experiment = {
 				$("#stage").fadeOut();
 
 				//there are no more trials for the experiment to run
+				console.log("Counter: " + counter);
 				if (counter === numTrials + 1) {
 					experiment.end();
 					return;
