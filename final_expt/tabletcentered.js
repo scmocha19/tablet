@@ -457,7 +457,7 @@ var experiment = {
 		
 		//click disable for the first slide
 		var clickDisabled = true;
-		setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].onset - spriteData[wordList[0]].start)*1000 + 300);
+		setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].onset - spriteData[wordList[0]].start)*1000 + 1300);
 
 	    $('.pic').bind('click touchstart', function(event) {
 

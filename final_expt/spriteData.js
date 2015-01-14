@@ -125,4 +125,44 @@ var spriteData = {
 		onset: 78,
 		length: 3.083,
 	},
+	plane: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	racecar: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	donut: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	nose: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	camel: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	apples: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	hammers: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
+	ketchup: {
+		start: 72,
+		onset: 73,
+		length: 3,
+	},
 };
