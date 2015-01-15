@@ -83,6 +83,7 @@ getCurrentTime = function() {
 makeWordList = function(order, trainPermutation, testPermutation) {
 	// order=1 means normal
 	// order=2 means noisy
+	// order=3 means implausible
 	
 
 	var testWords = shuffleByPermutation(
@@ -100,15 +101,17 @@ makeWordList = function(order, trainPermutation, testPermutation) {
 		["book_table", "bread_peanutbutter", "wooden_blocks", "flowers_basket", 
 		"house_door", "shark_fish", "cat_kittens", "knife_fork"],
 		trainPermutation);
-	}
-
-	else {
+	} else if (order === 2) {
 	var trainWords = shuffleByPermutation(
 		["pook_table", "bread_peanutbotter", "wooden_blucks", "flowers_pasket", "house_toor", 
 		"zhark_fish", "cat_kettens", "knife_vork"],
 
 
 		trainPermutation);
+	} else {
+		var trainWords = shuffleByPermutation(
+			["plane", "ketchup", "apples", "donut", "nose", "racecar", "hammers", "camel"],
+			trainPermutation);
 	}
 	
 	// for (var i = 0; i < trainWords.length; ++i) {
@@ -362,8 +365,8 @@ var experiment = {
   		experiment.subid = document.getElementById("subjectID").value;
 
 		//list
-		if (document.getElementById("order").value !== "1" && document.getElementById("order").value !== "2") { //|| document.getElementById("order").value !== "2") {
-			$("#checkMessage").html('<font color="red">For list, you must choose either a 1 or 2</font>');
+		if (document.getElementById("order").value !== "1" && document.getElementById("order").value !== "2" && document.getElementById("order").value !== "3") {
+			$("#checkMessage").html('<font color="red">For list, you must choose either a 1, 2, or 3</font>');
 			return;
 		}
 		experiment.order = parseInt(document.getElementById("order").value);
@@ -457,11 +460,13 @@ var experiment = {
 		
 		//click disable for the first slide
 		var clickDisabled = true;
-		setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].onset - spriteData[wordList[0]].start)*1000 + 1300);
+		setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].length)*1000 + 300);
 
 	    $('.pic').bind('click touchstart', function(event) {
 
-	    	if (clickDisabled) return;
+	    	if (clickDisabled) {
+	    		return;
+	    	}
 	    	
 	    	//disable subsequent clicks once the participant has made their choice
 			clickDisabled = true; 
@@ -563,7 +568,7 @@ var experiment = {
 						$("#stage").fadeIn();
 
 						//reactivate clicks only after a little bit after the prompt's word
-						setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].onset-spriteData[wordList[0]].start)*1000 + 300);
+						setTimeout(function() {clickDisabled = false;}, (spriteData[wordList[0]].length)*1000 + 300);
 
 						startTime = (new Date()).getTime();
 						playPrompt(wordList[0]);

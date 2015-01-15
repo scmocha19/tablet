@@ -11,6 +11,11 @@ body {
 	line-height: 20px;
 }
 
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 /** We manage display using "slides". A slide is a <code>div</code> that takes up the entire page. Only one slide should be visible at a time. Navigation between slides is most sensibly accomplished using buttons, rather than keyboard events. */
 .slide {
